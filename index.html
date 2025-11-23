@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Ucapan Hari Guru</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;font-family:"Segoe UI",sans-serif}
+    body{display:flex;height:100vh;align-items:center;justify-content:center;background:#f1f2f6}
+    .page{width:90%;max-width:700px;background:#fff;padding:2.5rem;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.1);text-align:center}
+    #page2{display:none}
+    button{padding:.7rem 1.8rem;font-size:1rem;border:none;border-radius:8px;background:#f39c12;color:#fff;cursor:pointer}
+    button:hover{background:#d68910}
+    #output{margin-top:1.5rem;font-size:1.25rem;line-height:1.7;white-space:pre-wrap}
+    .cursor{display:inline-block;width:2px;height:1.25rem;background:#2c3e50;vertical-align:text-bottom;animation:blink .8s infinite}
+    @keyframes blink{50%{opacity:0}}
+  </style>
+</head>
+<body>
+
+  <!-- ========== PAGE 1 ========== -->
+  <div id="page1" class="page">
+    <h2>Selamat pagi/siang/malam Bu anggun ada pesan ni buat Pak Guru</h2>
+    <button onclick="toPage2()">Next →</button>
+  </div>
+
+  <!-- ========== PAGE 2 ========== -->
+  <div id="page2" class="page">
+    <div id="output"><span id="typed"></span><span class="cursor"></span></div>
+    <br>
+    <button onclick="location.reload()">← Kembali</button>
+  </div>
+
+  <script>
+    // ===== EDIT ISI PESAN DISINI =====
+    const isiPesan = `Selamat Hari Guru, Bu!
+
+Terima kasih atas ilmu dalam mempelajari mtk dan kesabaran nya 
+selama ini kalau ada salah saya minta maaf selamat hari guru bu
+bikin permainan bu biar seru
+
+– Salam hormat, steve david`;
+
+    function toPage2() {
+      document.getElementById('page1').style.display = 'none';
+      document.getElementById('page2').style.display = 'block';
+      mulaiKetik();
+    }
+
+    function mulaiKetik() {
+      let i = 0;
+      const speed = 90; // 0,3 detik per karakter
+      function ketik() {
+        if (i < isiPesan.length) {
+          document.getElementById('typed').textContent += isiPesan.charAt(i);
+          i++;
+          setTimeout(ketik, speed);
+        }
+      }
+      ketik();
+    }
+  </script>
+
+</body>
+</html>
